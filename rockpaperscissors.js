@@ -35,12 +35,72 @@ function computerPlay(options) {
         }      
   }
 
-function game(playRound) {
-    for (let i = 0; i < 5; i++) {
-        let userInput = window.prompt('Please choose from the following: rock, paper, scissors');
+const container = document.querySelector('#container');
+const content = document.createElement('div');
+content.classList.add('content');
+var br = document.createElement('br');
+
+function game1(playRound) {
+    if (yourScore >= 5 || computerScore >= 5) {
+        return;
+    }
+    else {
         let computerSelection = computerPlay(options);
-        let playerSelection = userInput.toLowerCase();
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(`Your Score = ${yourScore}. Computer Score = ${computerScore}`);
+        let playerSelection = "rock";
+    content.textContent = (playRound(playerSelection, computerSelection));
+    content.textContent += (`Your Score = ${yourScore}. Computer Score = ${computerScore}`);
+    if (yourScore >= 5) {
+        content.textContent += "You win the game!"
+    }
+    if (computerScore >= 5) {
+        content.textContent += "Computer wins the game!"
+    }
 }
 }
+
+function game2(playRound) {
+    if (yourScore >= 5 || computerScore >= 5) {
+        return;
+    }
+    else {
+    let computerSelection = computerPlay(options);
+    let playerSelection = "paper";
+content.textContent = (playRound(playerSelection, computerSelection));
+content.textContent += (`Your Score = ${yourScore}. Computer Score = ${computerScore}`);
+if (yourScore >= 5) {
+    content.textContent += "You win the game!"
+}
+if (computerScore >= 5) {
+    content.textContent += "Computer wins the game!"
+}
+}
+}
+
+function game3(playRound) {
+    if (yourScore >= 5 || computerScore >= 5) {
+        return;
+    }
+    else {
+    let computerSelection = computerPlay(options);
+    let playerSelection = "scissors";
+    content.textContent = (playRound(playerSelection, computerSelection));
+    content.textContent += (`Your Score = ${yourScore}. Computer Score = ${computerScore}`);
+    if (yourScore >= 5) {
+        content.textContent += "You win the game!"
+    }
+    if (computerScore >= 5) {
+        content.textContent += "Computer wins the game!"
+    }
+}
+}
+
+var btn = document.getElementById("btn");
+btn.addEventListener('click', function() {game1(playRound)});
+
+var btn2 = document.getElementById("button2");
+btn2.addEventListener('click', function() {game2(playRound)});
+
+var btn3 = document.getElementById("button3");
+btn3.addEventListener('click', function() {game3(playRound)});
+
+container.appendChild(content);
